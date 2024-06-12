@@ -33,7 +33,8 @@
             measurementId: "G-4PL2CN88LR"
         };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized:", app.name);
 
         // Firebase Authentication
         const auth = firebase.auth();
