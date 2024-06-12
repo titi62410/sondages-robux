@@ -8,5 +8,67 @@
 <body>
     <h1>Bienvenue sur Sondages Robux</h1>
     <p>Inscrivez-vous et complétez des sondages pour gagner des Robux.</p>
+
+    <h2>Inscription</h2>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Mot de passe">
+    <button onclick="signUp()">Inscription</button>
+
+    <h2>Connexion</h2>
+    <input type="email" id="signin-email" placeholder="Email">
+    <input type="password" id="signin-password" placeholder="Mot de passe">
+    <button onclick="signIn()">Connexion</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAUDswb4L1E90XW7dU_owbtd63NS_QQN1I",
+            authDomain: "tizablox.firebaseapp.com",
+            projectId: "tizablox",
+            storageBucket: "tizablox.appspot.com",
+            messagingSenderId: "247043472450",
+            appId: "1:247043472450:web:f61506d24d01105c80c1db",
+            measurementId: "G-4PL2CN88LR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firebase Authentication
+        const auth = firebase.auth();
+
+        // Sign up function
+        function signUp() {
+            var email = document.getElementById("signup-email").value;
+            var password = document.getElementById("signup-password").value;
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    var user = userCredential.user;
+                    alert("Inscription réussie !");
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+
+        // Sign in function
+        function signIn() {
+            var email = document.getElementById("signin-email").value;
+            var password = document.getElementById("signin-password").value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    var user = userCredential.user;
+                    alert("Connexion réussie !");
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+    </script>
 </body>
 </html>
